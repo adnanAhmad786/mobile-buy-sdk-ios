@@ -35,7 +35,7 @@
 
 - (NSOperation *)getAddressesCallback:(BUYDataAddressesBlock)block
 {
-	NSURL *route = [self urlForCustomersAddresses];
+	NSURL *route = [self urlForLoggedInCustomerAddresses];
 	return [self getRequestForURL:route completionHandler:^(NSDictionary *json, NSHTTPURLResponse *response, NSError *error) {
 		NSArray<BUYAddress *> *addresses = nil;
 		if (json && !error) {
@@ -47,7 +47,7 @@
 
 - (NSOperation *)getAddressWithID:(NSNumber *)addressID callback:(BUYDataAddressBlock)block
 {
-	NSURL *route = [self urlForCustomersAddressWithAddressID:addressID];
+	NSURL *route = [self urlForLoggedInCustomerAddressWithAddressID:addressID];
 	return [self getRequestForURL:route completionHandler:^(NSDictionary *json, NSHTTPURLResponse *response, NSError *error) {
 		BUYAddress *address = nil;
 		if (json && !error) {
@@ -59,7 +59,7 @@
 
 - (NSOperation *)createAddress:(BUYAddress *)address callback:(BUYDataAddressBlock)block
 {
-	NSURL *route = [self urlForCustomersAddresses];
+	NSURL *route = [self urlForLoggedInCustomerAddresses];
 	return [self postRequestForURL:route object:@{ @"address" : address.JSONDictionary } completionHandler:^(NSDictionary *json, NSHTTPURLResponse *response, NSError *error) {
 		BUYAddress *address = nil;
 		if (json && !error) {
@@ -73,7 +73,7 @@
 {
 	BUYAssert(address.identifier, @"Failed to update address. Address must have a valid identifier.");
 	
-	NSURL *route = [self urlForCustomersAddressWithAddressID:address.identifier];
+	NSURL *route = [self urlForLoggedInCustomerAddressWithAddressID:address.identifier];
 	return [self putRequestForURL:route object:@{ @"address" : address.JSONDictionary } completionHandler:^(NSDictionary *json, NSHTTPURLResponse *response, NSError *error) {
 		BUYAddress *address = nil;
 		if (json && !error) {
@@ -87,7 +87,7 @@
 {
 	BUYAssert(addressID, @"Failed to update address. Address must have a valid identifier.");
 	
-	NSURL *route = [self urlForCustomersAddressWithAddressID:addressID];
+	NSURL *route = [self urlForLoggedInCustomerAddressWithAddressID:addressID];
 	return [self deleteRequestForURL:route completionHandler:^(NSDictionary *json, NSHTTPURLResponse *response, NSError *error) {
 		block(response.statusCode, error);
 	}];

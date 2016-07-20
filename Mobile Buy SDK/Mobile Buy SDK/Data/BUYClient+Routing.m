@@ -206,14 +206,14 @@
 	return [[[self urlForCustomers] appendPath:identifier] appendExtension];
 }
 
-- (NSURL *)urlForCustomersOrders
+- (NSURL *)urlForLoggedInCustomerOrders
 {
 	return [[[self urlForLoggedInCustomer] appendPath:@"/orders"] appendExtension];
 }
 
-- (NSURL *)urlForCustomersOrdersWithOrderID:(NSNumber *)orderID
+- (NSURL *)urlForLoggedInCustomerOrdersWithOrderID:(NSNumber *)orderID
 {
-	return [[[self urlForCustomersOrders] appendIdentifier:orderID] appendExtension];
+	return [[[self urlForLoggedInCustomerOrders] appendIdentifier:orderID] appendExtension];
 }
 
 - (NSURL *)urlForCustomersActivationWithID:(NSString *)identifier parameters:(NSDictionary *)parameters
@@ -221,7 +221,7 @@
 	return [[[[self urlForCustomersWithID:identifier] appendPath:@"/activate"] appendParameters:parameters] appendExtension];
 }
 
-- (NSURL *)urlForCustomersTokenRenewal
+- (NSURL *)urlForLoggedInCustomerTokenRenewal
 {
 	return [[[self urlForLoggedInCustomer] appendPath:@"/customer_token/renew"] appendExtension];
 }
@@ -233,12 +233,12 @@
 
 #pragma mark - Customer Addresses -
 
-- (NSURL *)urlForCustomersAddresses
+- (NSURL *)urlForLoggedInCustomerAddresses
 {
 	return [[[self urlForLoggedInCustomer] appendPath:@"/addresses"] appendExtension];
 }
 
-- (NSURL *)urlForCustomersAddressWithAddressID:(NSNumber *)addressID
+- (NSURL *)urlForLoggedInCustomerAddressWithAddressID:(NSNumber *)addressID
 {
 	return [[[[self urlForLoggedInCustomer] appendPath:@"/addresses"] appendIdentifier:addressID] appendExtension];
 }

@@ -49,18 +49,18 @@
 - (NSURL *)urlForCustomers;
 - (NSURL *)urlForCustomersToken;
 - (NSURL *)urlForCustomersPasswordRecovery;
+
 - (NSURL *)urlForLoggedInCustomer;
 - (NSURL *)urlForLoggedInCustomerToken;
-- (NSURL *)urlForCustomersTokenRenewal;
-
-- (NSURL *)urlForCustomersOrders;
-- (NSURL *)urlForCustomersOrdersWithOrderID:(NSNumber *)orderID;
+- (NSURL *)urlForLoggedInCustomerTokenRenewal;
+- (NSURL *)urlForLoggedInCustomerOrders;
+- (NSURL *)urlForLoggedInCustomerOrdersWithOrderID:(NSNumber *)orderID;
 
 - (NSURL *)urlForCustomersWithID:(NSString *)identifier;
 - (NSURL *)urlForCustomersActivationWithID:(NSString *)identifier parameters:(NSDictionary *)parameters;
 - (NSURL *)urlForCustomersPasswordResetWithID:(NSString *)identifier parameters:(NSDictionary *)parameters;
 
-- (NSURL *)urlForCustomersAddresses;
-- (NSURL *)urlForCustomersAddressWithAddressID:(NSNumber *)addressID;
+- (NSURL *)urlForLoggedInCustomerAddresses;
+- (NSURL *)urlForLoggedInCustomerAddressWithAddressID:(NSNumber *)addressID;
 
 @end

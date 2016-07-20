@@ -115,7 +115,7 @@
 - (NSOperation *)renewCustomerTokenCallback:(BUYDataTokenBlock)block
 {
 	if (self.customerToken) {
-		NSURL *url = [self urlForCustomersTokenRenewal];
+		NSURL *url = [self urlForLoggedInCustomerTokenRenewal];
 		
 		return [self putRequestForURL:url object:nil completionHandler:^(NSDictionary *json, NSHTTPURLResponse *response, NSError *error) {
 			NSString *accessToken = nil;
@@ -160,7 +160,7 @@
 
 - (NSOperation *)getOrdersForCustomerCallback:(BUYDataOrdersBlock)block
 {
-	NSURL *url = [self urlForCustomersOrders];
+	NSURL *url = [self urlForLoggedInCustomerOrders];
 	return [self getRequestForURL:url completionHandler:^(NSDictionary *json, NSHTTPURLResponse *response, NSError *error) {
 		if (json && !error) {
 			NSArray *orders = [self.modelManager ordersWithJSONDictionary:json];
@@ -173,7 +173,7 @@
 
 - (NSOperation *)getOrderWithID:(NSNumber *)orderID callback:(BUYDataOrderBlock)block
 {
-	NSURL *url = [self urlForCustomersOrdersWithOrderID:orderID];
+	NSURL *url = [self urlForLoggedInCustomerOrdersWithOrderID:orderID];
 	return [self getRequestForURL:url completionHandler:^(NSDictionary *json, NSHTTPURLResponse *response, NSError *error) {
 		if (json && !error) {
 			BUYOrder *order = [self.modelManager orderWithJSONDictionary:json];
